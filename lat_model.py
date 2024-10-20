@@ -145,6 +145,7 @@ class LATLlamaMLP(LlamaMLP):
 
     def forward(self, x):
         if self.config.pretraining_tp > 1:
+            # why use this?
             slice = self.intermediate_size // self.config.pretraining_tp
             gate_proj_slices = self.gate_proj.weight.split(slice, dim=0)
             up_proj_slices = self.up_proj.weight.split(slice, dim=0)
